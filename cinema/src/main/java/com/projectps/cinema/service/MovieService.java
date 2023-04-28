@@ -1,5 +1,6 @@
 package com.projectps.cinema.service;
 
+import com.projectps.cinema.DTO.MovieDTO;
 import com.projectps.cinema.entity.Movie;
 import org.springframework.stereotype.Service;
 
@@ -8,21 +9,21 @@ import java.util.List;
 @Service
 public interface MovieService {
 
-    Movie saveMovie(Movie movie);
+    Movie saveMovie(MovieDTO movieDTO);
 
-    List<Movie> saveMovies(List<Movie> movies);
+    List<Movie> saveMovies(List<MovieDTO> moviesDTO);
 
-    List<Movie> getMovies();
+    List<MovieDTO> getMovies();
 
-    Movie getMovieById(int id);
+    MovieDTO getMovieById(int id);
 
-    List<Movie> getMoviesByGenre(String genre);
+    List<MovieDTO> getMoviesByGenre(String genre);
 
-    List<Movie> getMoviesByScore(double score);
+    List<MovieDTO> getMoviesByScore(double score);
 
-    List<Movie> getMoviesByYear(int year);
+    List<MovieDTO> getMoviesByYear(int year);
 
-    Movie updateMovie(Movie movie);
+    Movie updateMovie(MovieDTO movieDTO);
 
     void deleteMovie(int id);
 

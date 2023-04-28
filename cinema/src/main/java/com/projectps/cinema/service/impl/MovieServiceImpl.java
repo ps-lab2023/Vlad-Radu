@@ -1,6 +1,8 @@
 package com.projectps.cinema.service.impl;
 
+import com.projectps.cinema.DTO.MovieDTO;
 import com.projectps.cinema.entity.Movie;
+import com.projectps.cinema.mapper.MovieMapper;
 import com.projectps.cinema.repository.MovieRepository;
 import com.projectps.cinema.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,50 +17,58 @@ public class MovieServiceImpl implements MovieService {
     @Autowired
     private MovieRepository movieRepository;
 
+    @Autowired
+    private MovieMapper movieMapper;
+
     @Override
-    public Movie saveMovie(Movie movie) {
-        return movieRepository.save(movie);
+    public Movie saveMovie(MovieDTO movieDTO) {
+        return movieRepository.save(movieMapper.toMovie(movieDTO));
     }
 
     @Override
-    public List<Movie> saveMovies(List<Movie> movies) {
-        return movieRepository.saveAll(movies);
+    public List<Movie> saveMovies(List<MovieDTO> moviesDTO) {
+        return movieRepository.saveAll(movieMapper.toMovieList(moviesDTO));
     }
 
     @Override
-    public List<Movie> getMovies() {
-        return movieRepository.findAll();
+    public List<MovieDTO> getMovies() {
+        List<Movie> movies = movieRepository.findAll();
+        return movieMapper.toMovieDTOList(movies);
     }
 
     @Override
-    public Movie getMovieById(int id) {
-        return movieRepository.findById(id).orElse(null);
+    public MovieDTO getMovieById(int id) {
+        Movie movie = movieRepository.findById(id).orElse(null);
+        return movieMapper.toMovieDTO(movie);
     }
 
     @Override
-    public List<Movie> getMoviesByGenre(String genre) {
-        return movieRepository.findByGenresContaining(genre);
+    public List<MovieDTO> getMoviesByGenre(String genre) {
+        List<Movie> movies = movieRepository.findByGenresContaining(genre);
+        return movieMapper.toMovieDTOList(movies);
     }
 
     @Override
-    public List<Movie> getMoviesByScore(double score) {
-        return movieRepository.findByScoreGreaterThanEqual(score);
+    public List<MovieDTO> getMoviesByScore(double score) {
+        List<Movie> movies = movieRepository.findByScoreGreaterThanEqual(score);
+        return movieMapper.toMovieDTOList(movies);
     }
 
     @Override
-    public List<Movie> getMoviesByYear(int year) {
-        return movieRepository.findByYearGreaterThanEqual(year);
+    public List<MovieDTO> getMoviesByYear(int year) {
+        List<Movie> movies = movieRepository.findByYearGreaterThanEqual(year);
+        return movieMapper.toMovieDTOList(movies);
     }
 
     @Override
-    public Movie updateMovie(Movie movie) {
-        Movie existingMovie = movieRepository.findById(movie.getId()).orElse(null);
-        existingMovie.setTitle(movie.getTitle());
-        existingMovie.setGenres(movie.getGenres());
-        existingMovie.setYear(movie.getYear());
-        existingMovie.setRatings(movie.getRatings());
-        existingMovie.setScore(movie.getScore());
-        existingMovie.setActors(movie.getActors());
+    public Movie updateMovie(MovieDTO movieDTO) {
+        Movie existingMovie = movieRepository.findById(movieDTO.getId()).orElse(null);
+        existingMovie.setTitle(movieDTO.getTitle());
+        existingMovie.setGenres(movieDTO.getGenres());
+        existingMovie.setYear(movieDTO.getYear());
+        existingMovie.setRatings(movieDTO.getRatings());
+        existingMovie.setScore(movieDTO.getScore());
+        existingMovie.setActors(movieDTO.getActors());
 
         return movieRepository.save(existingMovie);
     }

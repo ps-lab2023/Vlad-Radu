@@ -1,5 +1,6 @@
 package com.projectps.cinema.controller;
 
+import com.projectps.cinema.DTO.ActorDTO;
 import com.projectps.cinema.entity.Actor;
 import com.projectps.cinema.entity.Gender;
 import com.projectps.cinema.service.ActorService;
@@ -16,28 +17,28 @@ public class ActorController {
     private ActorService actorService;
 
     @PostMapping("/addActor")
-    public Actor addActor(@RequestBody Actor actor) {
-        return actorService.saveActor(actor);
+    public Actor addActor(@RequestBody ActorDTO actorDTO) {
+        return actorService.saveActor(actorDTO);
     }
 
     @PostMapping("/addActors")
-    public List<Actor> addActors(@RequestBody List<Actor> actors) {
-        return actorService.saveActors(actors);
+    public List<Actor> addActors(@RequestBody List<ActorDTO> actorsDTO) {
+        return actorService.saveActors(actorsDTO);
     }
 
     @GetMapping("/allActors")
-    public List<Actor> findAllActors() {
+    public List<ActorDTO> findAllActors() {
         return actorService.getActors();
     }
 
     @GetMapping("/byId/{id}")
-    public Actor findActorById(@PathVariable int id) {
+    public ActorDTO findActorById(@PathVariable int id) {
         return actorService.getActorById(id);
     }
 
     @PutMapping("/updateActor")
-    public Actor updateActor(@RequestBody Actor actor) {
-        return actorService.updateActor(actor);
+    public Actor updateActor(@RequestBody ActorDTO actorDTO) {
+        return actorService.updateActor(actorDTO);
     }
 
     @DeleteMapping("/deleteActor/{id}")

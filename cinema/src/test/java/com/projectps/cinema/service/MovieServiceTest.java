@@ -1,6 +1,8 @@
 package com.projectps.cinema.service;
 
+import com.projectps.cinema.DTO.MovieDTO;
 import com.projectps.cinema.entity.Movie;
+import com.projectps.cinema.mapper.MovieMapper;
 import com.projectps.cinema.repository.MovieRepository;
 import com.projectps.cinema.service.impl.MovieServiceImpl;
 import org.junit.jupiter.api.Assertions;
@@ -16,6 +18,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RunWith(MockitoJUnitRunner.class)
 class MovieServiceTest {
@@ -31,19 +34,40 @@ class MovieServiceTest {
         MockitoAnnotations.initMocks(this);
     }
 
-
     @Test
     public void testSaveMovie() {
         //Arrange
-        Movie movie = new Movie();
-        Mockito.when(movieRepository.save(movie)).thenReturn(movie);
+        MovieDTO movieDTO = new MovieDTO();
+
+        // Map the DTO to an entity using the MovieMapper
+        Movie movie = MovieMapper.toMovie(movieDTO);
+
+        //Mock the repository save method to return the saved movie object
+        Mockito.when(movieRepository.save(Mockito.any(Movie.class))).thenReturn(movie);
 
         //Act
-        Movie result = movieService.saveMovie(movie);
+        Movie result = movieService.saveMovie(movieDTO);
 
         //Assert
-        Assertions.assertEquals(movie, result);
+        Assertions.assertEquals(result, movie);
+    }
 
+    @Test
+    public void testSaveMovies() {
+        // Arrange
+        List<MovieDTO> moviesDTO = Arrays.asList(new MovieDTO(), new MovieDTO());
+
+        // Map the DTOs to entities using the MovieMapper
+        List<Movie> movies = MovieMapper.toMovieList(moviesDTO);
+
+        // Mock the repository saveAll method to return the saved movies
+        Mockito.when(movieRepository.saveAll(Mockito.anyList())).thenReturn(movies);
+
+        // Act
+        List<Movie> result = movieService.saveMovies(moviesDTO);
+
+        // Assert
+        Assertions.assertEquals(result, movies);
     }
 
     @Test
@@ -52,11 +76,14 @@ class MovieServiceTest {
         List<Movie> movies = Arrays.asList(new Movie(), new Movie());
         Mockito.when(movieRepository.findAll()).thenReturn(movies);
 
+        // Create a list of expected DTOs by mapping the entities using MovieMapper
+        List<MovieDTO> expectedDTOs = MovieMapper.toMovieDTOList(movies);
+
         // Act
-        List<Movie> result = movieService.getMovies();
+        List<MovieDTO> result = movieService.getMovies();
 
         // Assert
-        Assertions.assertEquals(movies, result);
+        Assertions.assertEquals(expectedDTOs, result);
     }
 
     @Test
@@ -66,14 +93,14 @@ class MovieServiceTest {
         int id = 1;
         movie.setId(id);
         Mockito.when(movieRepository.findById(id)).thenReturn(Optional.of(movie));
+        MovieDTO expectedDTO = MovieMapper.toMovieDTO(movie);
 
         // Act
-        Movie result = movieService.getMovieById(id);
+        MovieDTO result = movieService.getMovieById(id);
 
         // Assert
-        Assertions.assertEquals(movie, result);
+        Assertions.assertEquals(expectedDTO, result);
     }
-
 
     @Test
     public void testGetMoviesByGenre() {
@@ -82,11 +109,14 @@ class MovieServiceTest {
         String genre = "Action";
         Mockito.when(movieRepository.findByGenresContaining(genre)).thenReturn(movies);
 
+        // Create a list of expected DTOs by mapping the entities using MovieMapper
+        List<MovieDTO> expectedDTOs = MovieMapper.toMovieDTOList(movies);
+
         // Act
-        List<Movie> result = movieService.getMoviesByGenre(genre);
+        List<MovieDTO> result = movieService.getMoviesByGenre(genre);
 
         // Assert
-        Assertions.assertEquals(movies, result);
+        Assertions.assertEquals(expectedDTOs, result);
     }
 
     @Test
@@ -96,27 +126,57 @@ class MovieServiceTest {
         double score = 7.0;
         Mockito.when(movieRepository.findByScoreGreaterThanEqual(score)).thenReturn(movies);
 
+        // Create a list of expected DTOs by mapping the entities using MovieMapper
+        List<MovieDTO> expectedDTOs = MovieMapper.toMovieDTOList(movies);
+
         // Act
-        List<Movie> result = movieService.getMoviesByScore(score);
+        List<MovieDTO> result = movieService.getMoviesByScore(score);
 
         // Assert
-        Assertions.assertEquals(movies, result);
+        Assertions.assertEquals(expectedDTOs, result);
+    }
+
+    @Test
+    public void testGetMoviesByYear() {
+        // Arrange
+        List<Movie> movies = Arrays.asList(new Movie(), new Movie());
+        int year = 2010;
+        Mockito.when(movieRepository.findByYearGreaterThanEqual(year)).thenReturn(movies);
+
+        // Create a list of expected DTOs by mapping the entities using MovieMapper
+        List<MovieDTO> expectedDTOs = MovieMapper.toMovieDTOList(movies);
+
+        // Act
+        List<MovieDTO> result = movieService.getMoviesByYear(year);
+
+        // Assert
+        Assertions.assertEquals(expectedDTOs, result);
     }
 
     @Test
     public void testUpdateMovie() {
         // Arrange
-        Movie movie = new Movie();
+        MovieDTO movieDTO = new MovieDTO();
         int id = 1;
-        movie.setId(id);
-        Mockito.when(movieRepository.findById(id)).thenReturn(Optional.of(movie));
-        Mockito.when(movieRepository.save(movie)).thenReturn(movie);
+        movieDTO.setId(id);
+
+        Movie existingMovie = new Movie();
+        existingMovie.setId(id);
+
+        Mockito.when(movieRepository.findById(id)).thenReturn(Optional.of(existingMovie));
+        Mockito.when(movieRepository.save(Mockito.any(Movie.class))).thenAnswer(i -> i.getArguments()[0]);
+
+        // Map the DTO to an entity using the MovieMapper
+        MovieMapper movieMapper = new MovieMapper();
+        Movie updatedMovie = movieMapper.toMovie(movieDTO);
+        updatedMovie.setId(id);
 
         // Act
-        Movie result = movieService.updateMovie(movie);
+        Movie result = movieService.updateMovie(movieDTO);
 
         // Assert
-        Assertions.assertEquals(movie, result);
+        Assertions.assertEquals(updatedMovie.getId(), result.getId());
+        Mockito.verify(movieRepository, Mockito.times(1)).save(Mockito.any(Movie.class));
     }
 
     @Test

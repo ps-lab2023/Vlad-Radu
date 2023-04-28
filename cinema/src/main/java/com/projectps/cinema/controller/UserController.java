@@ -1,5 +1,8 @@
 package com.projectps.cinema.controller;
 
+import com.projectps.cinema.DTO.ActorDTO;
+import com.projectps.cinema.DTO.MovieDTO;
+import com.projectps.cinema.DTO.RatingDTO;
 import com.projectps.cinema.entity.Actor;
 import com.projectps.cinema.entity.Movie;
 import com.projectps.cinema.entity.Rating;
@@ -54,10 +57,10 @@ public class UserController {
     }
 
     @PostMapping("/adminAddMovie/{userId}")
-    public Movie adminAddMovie(@PathVariable int userId, @RequestBody Movie movie) {
+    public Movie adminAddMovie(@PathVariable int userId, @RequestBody MovieDTO movieDTO) {
         User user = userService.getUserById(userId);
         if(user.isAdmin()) {
-            return movieService.saveMovie(movie);
+            return movieService.saveMovie(movieDTO);
         }
         return null;
     }
@@ -71,19 +74,19 @@ public class UserController {
     }
 
     @PutMapping("/adminUpdateMovie")
-    public Movie adminUpdateMovie(@PathVariable int userId, @RequestBody Movie movie) {
+    public Movie adminUpdateMovie(@PathVariable int userId, @RequestBody MovieDTO movieDTO) {
         User user = userService.getUserById(userId);
         if(user.isAdmin()) {
-            return movieService.updateMovie(movie);
+            return movieService.updateMovie(movieDTO);
         }
         return null;
     }
 
     @PostMapping("/adminAddActor/{userId}")
-    public Actor adminAddActor(@PathVariable int userId, @RequestBody Actor actor) {
+    public Actor adminAddActor(@PathVariable int userId, @RequestBody ActorDTO actorDTO) {
         User user = userService.getUserById(userId);
         if(user.isAdmin()) {
-            return actorService.saveActor(actor);
+            return actorService.saveActor(actorDTO);
         }
         return null;
     }
@@ -97,17 +100,17 @@ public class UserController {
     }
 
     @PutMapping("/adminUpdateActor")
-    public Actor adminUpdateActor(@PathVariable int userId,@RequestBody Actor actor) {
+    public Actor adminUpdateActor(@PathVariable int userId,@RequestBody ActorDTO actorDTO) {
         User user = userService.getUserById(userId);
         if(user.isAdmin()) {
-            return actorService.updateActor(actor);
+            return actorService.updateActor(actorDTO);
         }
         return null;
     }
 
     @PostMapping("/userAddRating")
-    public Rating userAddRating(@RequestBody Rating rating) {
-        return ratingService.saveRating(rating);
+    public Rating userAddRating(@RequestBody RatingDTO ratingDTO) {
+        return ratingService.saveRating(ratingDTO);
     }
 
     @DeleteMapping("/userDeleteRating/{id}")
@@ -116,8 +119,8 @@ public class UserController {
     }
 
     @PutMapping("/userUpdateRating")
-    public Rating userUpdateRating(@RequestBody Rating rating) {
-        return ratingService.updateRating(rating);
+    public Rating userUpdateRating(@RequestBody RatingDTO ratingDTO) {
+        return ratingService.updateRating(ratingDTO);
     }
 
 }

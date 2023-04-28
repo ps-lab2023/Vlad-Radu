@@ -1,6 +1,8 @@
 package com.projectps.cinema.service;
 
+import com.projectps.cinema.DTO.ActorDTO;
 import com.projectps.cinema.entity.Actor;
+import com.projectps.cinema.mapper.ActorMapper;
 import com.projectps.cinema.repository.ActorRepository;
 import com.projectps.cinema.service.impl.ActorServiceImpl;
 import org.junit.jupiter.api.Assertions;
@@ -31,14 +33,38 @@ class ActorServiceTest {
     @Test
     public void testSaveActor() {
         // Arrange
-        Actor actor = new Actor();
-        Mockito.when(actorRepository.save(actor)).thenReturn(actor);
+        ActorDTO actorDTO = new ActorDTO();
+
+        // Map the DTO to an entity using the ActorMapper
+        Actor actor = ActorMapper.toActor(actorDTO);
+
+        // Mock the repository save method to return the saved actor object
+
+        Mockito.when(actorRepository.save(Mockito.any(Actor.class))).thenReturn(actor);
 
         // Act
-        Actor result = actorService.saveActor(actor);
+        Actor result = actorService.saveActor(actorDTO);
 
         // Assert
         Assertions.assertEquals(actor, result);
+    }
+
+    @Test
+    public void testSaveActors() {
+        //Arrange
+        List<ActorDTO> actorsDTO = Arrays.asList(new ActorDTO(), new ActorDTO());
+
+        // Map the DTOs to entities using the ActorMapper
+        List<Actor> actors = ActorMapper.toActorList(actorsDTO);
+
+        //Mock the repository save method to return the saved actors object
+        Mockito.when(actorRepository.saveAll(Mockito.anyList())).thenReturn(actors);
+
+        //Act
+        List<Actor> result = actorService.saveActors(actorsDTO);
+
+        //Assert
+        Assertions.assertEquals(actors, result);
     }
 
     @Test
@@ -47,11 +73,14 @@ class ActorServiceTest {
         List<Actor> actors = Arrays.asList(new Actor(), new Actor());
         Mockito.when(actorRepository.findAll()).thenReturn(actors);
 
+        // Create a list of DTOs from the list of entities
+        List<ActorDTO> actorDTOS = ActorMapper.toActorDTOList(actors);
+
         // Act
-        List<Actor> result = actorService.getActors();
+        List<ActorDTO> result = actorService.getActors();
 
         // Assert
-        Assertions.assertEquals(actors, result);
+        Assertions.assertEquals(actorDTOS, result);
     }
 
     @Test
@@ -61,29 +90,39 @@ class ActorServiceTest {
         int id = 1;
         actor.setId(id);
         Mockito.when(actorRepository.findById(id)).thenReturn(Optional.of(actor));
-        Mockito.when(actorRepository.save(actor)).thenReturn(actor);
+        ActorDTO actorDTO = ActorMapper.toActorDTO(actor);
 
         // Act
-        Actor result = actorService.getActorById(id);
+        ActorDTO result = actorService.getActorById(id);
 
         // Assert
-        Assertions.assertEquals(actor, result);
+        Assertions.assertEquals(actorDTO, result);
     }
 
     @Test
     public void testUpdateActor() {
         // Arrange
-        Actor actor = new Actor();
+        ActorDTO actorDTO = new ActorDTO();
         int id = 1;
-        actor.setId(id);
-        Mockito.when(actorRepository.findById(id)).thenReturn(Optional.of(actor));
-        Mockito.when(actorRepository.save(actor)).thenReturn(actor);
+        actorDTO.setId(id);
+
+        Actor existingActor = new Actor();
+        existingActor.setId(id);
+
+        Mockito.when(actorRepository.findById(id)).thenReturn(Optional.of(existingActor));
+        Mockito.when(actorRepository.save(Mockito.any(Actor.class))).thenAnswer(i -> i.getArguments()[0]);
+
+        // Map the DTO to an entity using the ActorMapper
+        ActorMapper actorMapper = new ActorMapper();
+        Actor updatedActor = actorMapper.toActor(actorDTO);
+        updatedActor.setId(id);
 
         // Act
-        Actor result = actorService.updateActor(actor);
+        Actor result = actorService.updateActor(actorDTO);
 
         // Assert
-        Assertions.assertEquals(actor, result);
+        Assertions.assertEquals(updatedActor.getId(), result.getId());
+        Mockito.verify(actorRepository, Mockito.times(1)).save(Mockito.any(Actor.class));
     }
 
     @Test

@@ -5,26 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da9ed916-7292-49f2-b9c4-e5fad3e5e594" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinema/src/main/cinemaSpecs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2ea46c9b-349c-4e36-bcf0-4255afd99b5a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/2ea46c9b-349c-4e36-bcf0-4255afd99b5a.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinema/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/controller/ActorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/controller/ActorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/controller/MovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/controller/MovieController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/controller/RatingContoller.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/controller/RatingContoller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/entity/Actor.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/entity/Actor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/entity/Gender.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/entity/Gender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/entity/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/entity/Movie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/entity/Rating.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/entity/Rating.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/repository/MovieRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/repository/MovieRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/service/ActorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/service/ActorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/service/MovieService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/service/MovieService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/service/RatingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/service/RatingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/service/impl/ActorServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/service/impl/ActorServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/service/impl/MovieServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/service/impl/MovieServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/service/impl/RatingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/src/main/java/com/projectps/cinema/service/impl/RatingServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cinema/src/test/java/com/projectps/cinema/service/ActorServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/src/test/java/com/projectps/cinema/service/ActorServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cinema/src/test/java/com/projectps/cinema/service/MovieServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/src/test/java/com/projectps/cinema/service/MovieServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cinema/src/test/java/com/projectps/cinema/service/RatingServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/src/test/java/com/projectps/cinema/service/RatingServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cinema/src/test/java/com/projectps/cinema/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/src/test/java/com/projectps/cinema/service/UserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinema/target/classes/com/projectps/cinema/controller/ActorController.class" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/target/classes/com/projectps/cinema/controller/ActorController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinema/target/classes/com/projectps/cinema/controller/MovieController.class" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/target/classes/com/projectps/cinema/controller/MovieController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinema/target/classes/com/projectps/cinema/controller/RatingContoller.class" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/target/classes/com/projectps/cinema/controller/RatingContoller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinema/target/classes/com/projectps/cinema/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/target/classes/com/projectps/cinema/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinema/target/classes/com/projectps/cinema/entity/Movie.class" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/target/classes/com/projectps/cinema/entity/Movie.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinema/target/classes/com/projectps/cinema/service/ActorService.class" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/target/classes/com/projectps/cinema/service/ActorService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinema/target/classes/com/projectps/cinema/service/MovieService.class" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/target/classes/com/projectps/cinema/service/MovieService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinema/target/classes/com/projectps/cinema/service/RatingService.class" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/target/classes/com/projectps/cinema/service/RatingService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinema/target/classes/com/projectps/cinema/service/impl/ActorServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/target/classes/com/projectps/cinema/service/impl/ActorServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinema/target/classes/com/projectps/cinema/service/impl/MovieServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/target/classes/com/projectps/cinema/service/impl/MovieServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinema/target/classes/com/projectps/cinema/service/impl/RatingServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/target/classes/com/projectps/cinema/service/impl/RatingServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinema/target/test-classes/com/projectps/cinema/service/ActorServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/target/test-classes/com/projectps/cinema/service/ActorServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinema/target/test-classes/com/projectps/cinema/service/MovieServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/target/test-classes/com/projectps/cinema/service/MovieServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cinema/target/test-classes/com/projectps/cinema/service/RatingServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/cinema/target/test-classes/com/projectps/cinema/service/RatingServiceTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +91,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../popcorn/popcorn" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/cinema" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
@@ -222,6 +233,12 @@
       <workItem from="1680295595341" duration="297000" />
       <workItem from="1680332694345" duration="2190000" />
       <workItem from="1680335660205" duration="2802000" />
+      <workItem from="1680614646877" duration="26000" />
+      <workItem from="1680614682939" duration="11000" />
+      <workItem from="1681207988047" duration="17000" />
+      <workItem from="1681208017553" duration="15000" />
+      <workItem from="1682500562860" duration="597000" />
+      <workItem from="1682504362645" duration="40000" />
     </task>
     <servers />
   </component>

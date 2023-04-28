@@ -1,5 +1,6 @@
 package com.projectps.cinema.service;
 
+import com.projectps.cinema.DTO.RatingDTO;
 import com.projectps.cinema.entity.Rating;
 import org.springframework.stereotype.Service;
 
@@ -8,15 +9,15 @@ import java.util.List;
 @Service
 public interface RatingService {
 
-    Rating saveRating(Rating rating);
+    Rating saveRating(RatingDTO ratingDTO);
 
-    List<Rating> saveRatings(List<Rating> ratings);
+    List<Rating> saveRatings(List<RatingDTO> ratingsDTO);
 
-    List<Rating> getRatings();
+    List<RatingDTO> getRatings();
 
-    List<Rating> getRatingsByScore(double score);
+    List<RatingDTO> getRatingsByScore(double score);
 
-    Rating updateRating(Rating rating);
+    Rating updateRating(RatingDTO ratingDTO);
 
     void deleteRating(int id);
 

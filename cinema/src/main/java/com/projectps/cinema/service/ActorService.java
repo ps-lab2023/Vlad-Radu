@@ -1,7 +1,7 @@
 package com.projectps.cinema.service;
 
+import com.projectps.cinema.DTO.ActorDTO;
 import com.projectps.cinema.entity.Actor;
-import com.projectps.cinema.entity.Gender;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,15 +9,15 @@ import java.util.List;
 @Service
 public interface ActorService {
 
-    Actor saveActor(Actor actor);
+    Actor saveActor(ActorDTO actorDTO);
 
-    List<Actor> saveActors(Iterable<Actor> actors);
+    List<Actor> saveActors(List<ActorDTO> actorsDTO);
 
-    List<Actor> getActors();
+    List<ActorDTO> getActors();
 
-    Actor getActorById(int id);
+    ActorDTO getActorById(int id);
 
-    Actor updateActor(Actor actor);
+    Actor updateActor(ActorDTO actorDTO);
 
     void deleteActor(int id);
 }

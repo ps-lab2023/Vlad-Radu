@@ -1,5 +1,6 @@
 package com.projectps.cinema.controller;
 
+import com.projectps.cinema.DTO.RatingDTO;
 import com.projectps.cinema.entity.Rating;
 import com.projectps.cinema.service.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,28 +16,28 @@ public class RatingContoller {
     private RatingService ratingService;
 
     @PostMapping("/addRating")
-    public void addRating(@RequestBody Rating rating) {
-        ratingService.saveRating(rating);
+    public void addRating(@RequestBody RatingDTO ratingDTO) {
+        ratingService.saveRating(ratingDTO);
     }
 
     @PostMapping("/addRatings")
-    public void addRatings(@RequestBody List<Rating> ratings) {
-        ratingService.saveRatings(ratings);
+    public void addRatings(@RequestBody List<RatingDTO> ratingsDTO) {
+        ratingService.saveRatings(ratingsDTO);
     }
 
     @GetMapping("/allRatings")
-    public List<Rating> findAllRatings() {
+    public List<RatingDTO> findAllRatings() {
         return ratingService.getRatings();
     }
 
     @GetMapping("/byScore/{score}")
-    public List<Rating> findRatingsByScore(@PathVariable double score) {
+    public List<RatingDTO> findRatingsByScore(@PathVariable double score) {
         return ratingService.getRatingsByScore(score);
     }
 
     @PutMapping("/updateRating")
-    public Rating updateRating(@RequestBody Rating rating) {
-        return ratingService.updateRating(rating);
+    public Rating updateRating(@RequestBody RatingDTO ratingDTO) {
+        return ratingService.updateRating(ratingDTO);
     }
 
     @DeleteMapping("/deleteRating/{id}")

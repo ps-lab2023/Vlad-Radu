@@ -1,6 +1,8 @@
 package com.projectps.cinema.service.impl;
 
+import com.projectps.cinema.DTO.RatingDTO;
 import com.projectps.cinema.entity.Rating;
+import com.projectps.cinema.mapper.RatingMapper;
 import com.projectps.cinema.repository.RatingRepository;
 import com.projectps.cinema.service.RatingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,34 +16,38 @@ public class RatingServiceImpl implements RatingService {
     @Autowired
     RatingRepository ratingRepository;
 
+    @Autowired
+    RatingMapper ratingMapper;
+
     @Override
-    public Rating saveRating(Rating rating) {
-        return ratingRepository.save(rating);
+    public Rating saveRating(RatingDTO ratingDTO) {
+        return ratingRepository.save(ratingMapper.toRating(ratingDTO));
     }
 
     @Override
-    public List<Rating> saveRatings(List<Rating> ratings) {
-        return ratingRepository.saveAll(ratings);
+    public List<Rating> saveRatings(List<RatingDTO> ratingsDTO) {
+        return ratingRepository.saveAll(ratingMapper.toRatingList(ratingsDTO));
     }
 
     @Override
-    public List<Rating> getRatings() {
-        return ratingRepository.findAll();
+    public List<RatingDTO> getRatings() {
+        List<Rating> ratings = ratingRepository.findAll();
+        return ratingMapper.toRatingDTOList(ratings);
     }
 
     @Override
-    public List<Rating> getRatingsByScore(double score) {
-        return ratingRepository.findByScoreGreaterThanEqual(score);
+    public List<RatingDTO> getRatingsByScore(double score) {
+        List<Rating> ratings = ratingRepository.findByScoreGreaterThanEqual(score);
+        return ratingMapper.toRatingDTOList(ratings);
     }
 
     @Override
-    public Rating updateRating(Rating rating) {
-        Rating existingRating = ratingRepository.findById(rating.getId()).orElse(null);
-        existingRating.setTitle(rating.getTitle());
-        existingRating.setScore(rating.getScore());
-        existingRating.setDescription(rating.getDescription());
-        /*existingRating.setMovie(rating.getMovie());
-        existingRating.setUser(rating.getUser());*/
+    public Rating updateRating(RatingDTO ratingDTO) {
+        Rating existingRating = ratingRepository.findById(ratingDTO.getId()).orElse(null);
+        existingRating.setTitle(ratingDTO.getTitle());
+        existingRating.setScore(ratingDTO.getScore());
+        existingRating.setDescription(ratingDTO.getDescription());
+
         return ratingRepository.save(existingRating);
     }
 
