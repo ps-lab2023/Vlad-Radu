@@ -1,6 +1,8 @@
 package com.projectps.cinema.service;
 
+import com.projectps.cinema.DTO.UserDTO;
 import com.projectps.cinema.entity.User;
+import com.projectps.cinema.mapper.UserMapper;
 import com.projectps.cinema.repository.UserRepository;
 import com.projectps.cinema.service.impl.UserServiceImpl;
 import org.junit.jupiter.api.Assertions;
@@ -31,14 +33,19 @@ class UserServiceTest {
     @Test
     public void testSaveUser() {
         // Arrange
-        User user = new User();
-        Mockito.when(userRepository.save(user)).thenReturn(user);
+        UserDTO userDTO = new UserDTO();
 
-        // Act
-        User result = userService.saveUser(user);
+        //Map the DTO to an entity using the UserMapper
+        User user = UserMapper.toUser(userDTO);
 
-        // Assert
-        Assertions.assertEquals(user, result);
+        //Mock the repository save method to return the saved user object
+        Mockito.when(userRepository.save(Mockito.any(User.class))).thenReturn(user);
+
+        //Act
+        User result = userService.saveUser(userDTO);
+
+        //Assert
+        Assertions.assertEquals(result, user);
     }
 
     @Test
@@ -47,11 +54,14 @@ class UserServiceTest {
         List<User> users = Arrays.asList(new User(), new User());
         Mockito.when(userRepository.findAll()).thenReturn(users);
 
+        // Create a list of DTOs from the list of entities
+        List<UserDTO> usersDTOs = UserMapper.toUserDTOList(users);
+
         // Act
-        List<User> result = userService.getUsers();
+        List<UserDTO> result = userService.getUsers();
 
         // Assert
-        Assertions.assertEquals(users, result);
+        Assertions.assertEquals(usersDTOs, result);
     }
 
     @Test
@@ -60,29 +70,40 @@ class UserServiceTest {
         User user = new User();
         int id = 1;
         Mockito.when(userRepository.findById(id)).thenReturn(Optional.of(user));
+        UserDTO userDTO = UserMapper.toUserDTO(user);
 
         // Act
-        User result = userService.getUserById(id);
+        UserDTO result = userService.getUserById(id);
 
         // Assert
-        Assertions.assertEquals(user, result);
+        Assertions.assertEquals(userDTO, result);
     }
 
 
     @Test
     public void testUpdateUser() {
         // Arrange
-        User user = new User();
+        UserDTO userDTO = new UserDTO();
         int id = 1;
-        user.setId(id);
-        Mockito.when(userRepository.findById(id)).thenReturn(Optional.of(user));
-        Mockito.when(userRepository.save(user)).thenReturn(user);
+        userDTO.setId(id);
 
-        // Act
-        User result = userService.updateUser(user);
+        User existingUser = new User();
+        existingUser.setId(id);
 
-        // Assert
-        Assertions.assertEquals(user, result);
+        Mockito.when(userRepository.findById(id)).thenReturn(Optional.of(existingUser));
+        Mockito.when(userRepository.save(Mockito.any(User.class))).thenAnswer(i -> i.getArguments()[0]);
+
+        //Map the DTO to an entity using the UserMapper
+        UserMapper userMapper = new UserMapper();
+        User updatedUser = userMapper.toUser(userDTO);
+        updatedUser.setId(id);
+
+        //Act
+        User result = userService.updateUser(userDTO);
+
+        //Assert
+        Assertions.assertEquals(updatedUser.getId(), result.getId());
+        Mockito.verify(userRepository, Mockito.times(1)).save(Mockito.any(User.class));
     }
 
     @Test

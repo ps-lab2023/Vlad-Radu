@@ -14,7 +14,9 @@ public class RatingMapper {
                 rating.getId(),
                 rating.getTitle(),
                 rating.getScore(),
-                rating.getDescription()
+                rating.getDescription(),
+                rating.getMovie(),
+                rating.getUser()
         );
     }
 
@@ -23,7 +25,9 @@ public class RatingMapper {
                 ratingDTO.getId(),
                 ratingDTO.getTitle(),
                 ratingDTO.getScore(),
-                ratingDTO.getDescription()
+                ratingDTO.getDescription(),
+                ratingDTO.getMovie(),
+                ratingDTO.getUser()
         );
     }
 

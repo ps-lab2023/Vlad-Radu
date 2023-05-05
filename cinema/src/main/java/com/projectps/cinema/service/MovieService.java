@@ -27,5 +27,13 @@ public interface MovieService {
 
     void deleteMovie(int id);
 
+    List<MovieDTO> sortMoviesByTitle(String order);
 
+    List<MovieDTO> sortMoviesByScore(String order);
+
+    MovieDTO incresePopularity(int id);
+
+    MovieDTO decreasePopularity(int id);
+
+    List<MovieDTO> getMoviesByPopularity();
 }

@@ -2,7 +2,6 @@ package com.projectps.cinema.service.impl;
 
 import com.projectps.cinema.DTO.ActorDTO;
 import com.projectps.cinema.entity.Actor;
-import com.projectps.cinema.entity.Gender;
 import com.projectps.cinema.mapper.ActorMapper;
 import com.projectps.cinema.repository.ActorRepository;
 import com.projectps.cinema.service.ActorService;

@@ -20,4 +20,5 @@ public class MovieDTO {
     private List<Rating> ratings;
     private double score;
     private List<Actor> actors;
+    private int popularity;
 }

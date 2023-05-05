@@ -1,9 +1,6 @@
 package com.projectps.cinema.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,7 +28,6 @@ public class Actor {
     private String originCountry;
 
     @ManyToMany(mappedBy = "actors", fetch = FetchType.LAZY)
-
     @JsonBackReference("movie-actors")
     private List<Movie> movies;
 }

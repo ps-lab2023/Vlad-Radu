@@ -2,7 +2,6 @@ package com.projectps.cinema.controller;
 
 import com.projectps.cinema.DTO.ActorDTO;
 import com.projectps.cinema.entity.Actor;
-import com.projectps.cinema.entity.Gender;
 import com.projectps.cinema.service.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

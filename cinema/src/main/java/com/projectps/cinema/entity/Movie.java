@@ -26,13 +26,13 @@ public class Movie {
 
     private int year;
 
-    @OneToMany(targetEntity = Rating.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "movierating_fk", referencedColumnName = "id")
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @JoinColumn(name = "movie_id", nullable = true)
     private List<Rating> ratings;
+
 
     private double score;
 
-    //@JsonManagedReference("movie-actors")
     @JsonIgnoreProperties("movies")
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "movie_actor",
@@ -43,4 +43,6 @@ public class Movie {
                     @JoinColumn(name = "actor_id", referencedColumnName = "id")
             })
     private List<Actor> actors;
+
+    private int popularity;
 }

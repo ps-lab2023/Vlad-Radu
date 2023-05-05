@@ -42,7 +42,7 @@ class RatingServiceTest {
         Mockito.when(ratingRepository.save(Mockito.any(Rating.class))).thenReturn(rating);
 
         //Act
-        Rating result = ratingService.saveRating(ratingDTO);
+        Rating result = ratingService.saveRating(ratingDTO, 1, 1);
 
         //Assert
         Assertions.assertEquals(result, rating);

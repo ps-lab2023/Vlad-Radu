@@ -60,4 +60,19 @@ public class MovieController {
     public void deleteMovie(@PathVariable int id) {
         movieService.deleteMovie(id);
     }
+
+    @GetMapping("/sortMoviesByTitle/{order}")
+    public List<MovieDTO> sortMoviesByTitle(@PathVariable String order) {
+        return movieService.sortMoviesByTitle(order);
+    }
+
+    @GetMapping("/sortMoviesByScore/{order}")
+    public List<MovieDTO> sortMoviesByScore(@PathVariable String order) {
+        return movieService.sortMoviesByScore(order);
+    }
+
+    @GetMapping("/sortMoviesByPopularity")
+    public List<MovieDTO> sortMoviesByPopularity() {
+        return movieService.getMoviesByPopularity();
+    }
 }

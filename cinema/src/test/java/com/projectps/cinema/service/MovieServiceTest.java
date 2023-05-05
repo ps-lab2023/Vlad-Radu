@@ -18,7 +18,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RunWith(MockitoJUnitRunner.class)
 class MovieServiceTest {

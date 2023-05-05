@@ -1,5 +1,7 @@
 package com.projectps.cinema.DTO;
 
+import com.projectps.cinema.entity.Movie;
+import com.projectps.cinema.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,4 +14,6 @@ public class RatingDTO {
     private String title;
     private double score;
     private String description;
+    private Movie movie;
+    private User user;
 }
