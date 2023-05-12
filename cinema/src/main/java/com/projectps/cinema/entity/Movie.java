@@ -1,8 +1,11 @@
 package com.projectps.cinema.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.*;
+import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.Set;
@@ -19,21 +22,25 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @NotBlank(message = "Title is mandatory")
     private String title;
 
+    @NotEmpty(message = "Genres cannot be empty")
     @ElementCollection
     private Set<String> genres;
 
+    @Min(value = 1900, message = "Year must be greater than 1900")
+    @Max(value = 2023, message = "Year must be less than 2023")
     private int year;
 
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "movie_id", nullable = true)
     private List<Rating> ratings;
 
-
+    @DecimalMin(value = "0.0", message = "Score must be greater than 0.0")
+    @DecimalMax(value = "10.0", message = "Score must be less than 10.0")
     private double score;
 
-    @JsonIgnoreProperties("movies")
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "movie_actor",
             joinColumns = {
@@ -44,5 +51,6 @@ public class Movie {
             })
     private List<Actor> actors;
 
+    @Min(value = 0, message = "Popularity must be greater than 0")
     private int popularity;
 }

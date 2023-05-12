@@ -48,7 +48,6 @@ public class ActorServiceImpl implements ActorService {
         existingActor.setAge(actorDTO.getAge());
         existingActor.setGender(actorDTO.getGender());
         existingActor.setOriginCountry(actorDTO.getOriginCountry());
-        existingActor.setMovies(actorDTO.getMovies());
         return actorRepository.save(existingActor);
     }
 

@@ -6,8 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.ZonedDateTime;
 import java.util.List;
-import java.util.Objects;
 
 @Data
 @NoArgsConstructor
@@ -22,4 +22,5 @@ public class UserDTO {
     private List<Rating> ratings;
     private List<Movie> favoriteMovies;
     private List<Movie> watchList;
+    private ZonedDateTime lastLogin;
 }

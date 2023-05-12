@@ -15,8 +15,7 @@ public class ActorMapper {
                     actor.getName(),
                     actor.getAge(),
                     actor.getGender(),
-                    actor.getOriginCountry(),
-                    actor.getMovies()
+                    actor.getOriginCountry()
             );
         }
 
@@ -26,8 +25,7 @@ public class ActorMapper {
                     actorDTO.getName(),
                     actorDTO.getAge(),
                     actorDTO.getGender(),
-                    actorDTO.getOriginCountry(),
-                    actorDTO.getMovies()
+                    actorDTO.getOriginCountry()
             );
         }
 

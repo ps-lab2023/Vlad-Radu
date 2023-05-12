@@ -10,6 +10,7 @@ import com.projectps.cinema.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +49,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserDTO getUserByEmail(String email) {
+        User user = userRepository.findByEmail(email);
+        return userMapper.toUserDTO(user);
+    }
+
+    @Override
     public User updateUser(UserDTO userDTO) {
         User existingUser = userRepository.findById(userDTO.getId()).orElse(null);
         existingUser.setAdmin(userDTO.isAdmin());
@@ -57,6 +64,7 @@ public class UserServiceImpl implements UserService {
         existingUser.setRatings(userDTO.getRatings());
         existingUser.setFavoriteMovies(userDTO.getFavoriteMovies());
         existingUser.setWatchList(userDTO.getWatchList());
+        existingUser.setLastLogin(userDTO.getLastLogin());
         return userRepository.save(existingUser);
     }
 
@@ -119,5 +127,10 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-
+    @Override
+    public void setLastLogin(int userId) {
+        UserDTO userDTO = getUserById(userId);
+        userDTO.setLastLogin(ZonedDateTime.now());
+        updateUser(userDTO);
+    }
 }

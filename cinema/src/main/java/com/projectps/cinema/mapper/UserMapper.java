@@ -19,7 +19,8 @@ public class UserMapper {
                 user.getPassword(),
                 user.getRatings(),
                 user.getFavoriteMovies(),
-                user.getWatchList()
+                user.getWatchList(),
+                user.getLastLogin()
         );
     }
 
@@ -33,7 +34,8 @@ public class UserMapper {
                 userDTO.getPassword(),
                 userDTO.getRatings(),
                 userDTO.getFavoriteMovies(),
-                userDTO.getWatchList()
+                userDTO.getWatchList(),
+                userDTO.getLastLogin()
         );
     }
 

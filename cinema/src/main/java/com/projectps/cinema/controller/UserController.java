@@ -2,6 +2,7 @@ package com.projectps.cinema.controller;
 
 import com.projectps.cinema.DTO.UserDTO;
 import com.projectps.cinema.entity.User;
+import com.projectps.cinema.service.EmailSenderService;
 import com.projectps.cinema.service.MovieService;
 import com.projectps.cinema.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class UserController {
 
     @Autowired
     MovieService movieService;
+
+    @Autowired
+    EmailSenderService emailSenderService;
 
     @PostMapping("/addUser")
     public User addUser(@RequestBody UserDTO userDTO) {
@@ -38,6 +42,11 @@ public class UserController {
     @GetMapping("/byId/{id}")
     public UserDTO findUserById(@PathVariable int id) {
         return userService.getUserById(id);
+    }
+
+    @GetMapping("/byEmail/{email}")
+    public UserDTO findUserByEmail(@PathVariable String email) {
+        return userService.getUserByEmail(email);
     }
 
     @PutMapping("/updateUser")
@@ -74,5 +83,15 @@ public class UserController {
         userService.removeMovieFromWatchList(userId, movieId);
         movieService.decreasePopularity(movieId);
         return userService.getUserById(userId);
+    }
+
+    @PutMapping("/setLastLogin/{userId}")
+    public void setLastLogin(@PathVariable int userId) {
+        userService.setLastLogin(userId);
+    }
+
+    @PostMapping("/sendEmail/{email}/{subject}/{body}")
+    public void sendEmail(@PathVariable String email, @PathVariable String subject, @PathVariable String body) {
+        emailSenderService.sendSimpleEmail(email, subject, body);
     }
 }

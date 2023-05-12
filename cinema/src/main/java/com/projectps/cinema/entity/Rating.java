@@ -3,6 +3,7 @@ package com.projectps.cinema.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 @Setter
@@ -16,8 +17,14 @@ public class Rating {
     @Id
     @GeneratedValue
     private int id;
+
+    @NotNull(message = "Title is mandatory")
     private String title;
+
+    @NotNull(message = "Score is mandatory")
     private double score;
+
+    @NotNull(message = "Description is mandatory")
     private String description;
 
     @JsonIgnore

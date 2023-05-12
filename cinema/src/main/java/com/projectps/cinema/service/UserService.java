@@ -17,6 +17,8 @@ public interface UserService {
 
     UserDTO getUserById(int id);
 
+    UserDTO getUserByEmail(String email);
+
     User updateUser(UserDTO userDTO);
 
     void deleteUser(int id);
@@ -28,6 +30,8 @@ public interface UserService {
     UserDTO addMovieToWatchList(int userId, int movieId);
 
     void removeMovieFromWatchList(int userId, int movieId);
+
+    void setLastLogin(int userId);
 
 
 }
